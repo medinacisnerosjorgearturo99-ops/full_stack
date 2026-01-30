@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> My Proyect</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <section id="Nosotros" class="Nosotros">
+        <div class="Tile">
+            <h1>Constructora Atlas del Norte</h1>
+        </div>
+        
+            <div class="desc">
+                <div class="mision">
+                    <div class="Tmis">
+                        <h4>Misión:</h4>
+                    </div>
+                    <div class="Imis">
+                        <p>Brindar servicios de construcción confiables y de alta calidad, 
+                        ejecutando proyectos eficientes, 
+                        seguros y sostenibles que generen valor a nuestros clientes y a la comunidad.
+                        </p>
+                    </div>
+                </div>
+                <div class="somos">
+                    <div class="Tsom">
+                        <h4>¿Quienes Somos?</h4>
+                    </div>
+                    <div class="Isom">
+                        <p>Constructora Atlas del Norte es una empresa dedicada al diseño, 
+                        construcción y supervisión de proyectos de obra civil, residencial, 
+                        comercial e industrial. 
+                        Ofrecemos soluciones integrales que combinan calidad, 
+                        seguridad y cumplimiento de tiempos, 
+                        adaptándonos a las necesidades de cada cliente.
+                        </p>
+                    </div>
+                </div>
+                <div class="vision">
+                    <div class="Tvis">
+                        <h4>Visión:</h4>
+                    </div>
+                    <div class="Ivis">
+                        <p>Ser una empresa líder en el sector de la construcción a nivel nacional, 
+                        reconocida por su profesionalismo, 
+                        innovación y compromiso con la excelencia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section id="proyectos" class="Proyect">
+        <div class="Ac_des">
+            <h2>Actividades destacadas:</h2>
+        </div>
+        <div class="imgs">
+            <div class="FProyect">
+                <h4>Construcción de Residencial Privado “Altavista”</h4>
+                <div class="img1">
+                    <img src="imagenes/Atardecer en Residencial Altavista.jpg">
+                    <button id="CC" class="CB">Change color</button>
+                </div>
+            </div>
+            <div class="SProyect">
+                <h4>Edificio Comercial “Plaza Norte”</h4>
+                <div class="img1">
+                    <img src="imagenes/Atardecer en Plaza Norte.png">
+                </div>
+            </div>
+            <div class="TProyect">
+                <h4>Obra Civil e Infraestructura Urbana</h4>
+                <div class="img1">
+                    <img src="imagenes/Obra en progreso al atardecer.png">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="Contacto" class="Contacto">
+        <div class="contact-wrap">
+            <div class="contact-card">
+                <h2 class="contact-title">CONTACT</h2>
+                
+                <form class="contact-form">
+                    <div class="contact-grid">
+                        <input type="text" placeholder="First Name" name="firstName">
+                        <input type="text" placeholder="Last Name" name="lastName">
+                        <input type="email" placeholder="Mail" name="firstName">
+                        <input type="tel" placeholder="Phone" name="firstName">
+                    </div>
+
+                    <textarea class="field field-area" placeholder="Message" name="messege" rows="6"></textarea>
+
+                    <button class="btn" type="submit">submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script>
+        const boton = document.getElementById("CC")
+
+        boton.addEventListener('click', function(){
+            document.body.style.backgroundColor = 'blue';
+        });
+    </script>
+</body>
+<footer>
+
+</footer>
+</html> 
