@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Task Organizer</title>
+
+  <link rel="stylesheet" href="css_js/css.css" />
+  <script src="css_js/js.js" defer></script>
+</head>
+
+<body>
+  <!-- Barra superior -->
+  <header class="barra_superior">
+    <button class="btn_icono" type="button" aria-label="Cuenta">
+      <img src="imags/ChatGPT Image Jan 22, 2026, 11_56_47 PM.png" alt="Cuenta" />
+    </button>
+
+    <button id="btn_home" class="btn_icono btn_grande" type="button" aria-label="Inicio">
+      <img src="imags/ChatGPT Image Jan 22, 2026, 11_59_12 PM.png" alt="Inicio" />
+    </button>
+
+    <div class="busqueda">
+      <label class="sr_only" for="busqueda_tareas">Búsqueda de tareas</label>
+      <input
+        id="busqueda_tareas"
+        class="bus_ta"
+        type="text"
+        placeholder="Búsqueda de tareas"
+        name="busqueda_ta"
+        autocomplete="off"
+      />
+    </div>
+
+    <button class="btn_icono btn_grande" type="button" aria-label="Cambiar vista">
+      <img src="imags/ChatGPT Image Jan 23, 2026, 12_06_01 AM.png" alt="Vista" />
+    </button>
+
+    <button class="btn_icono" type="button" aria-label="Cambiar modo claro/oscuro">
+      <img src="imags/ChatGPT Image Jan 23, 2026, 12_01_00 AM.png" alt="Modo oscuro" />
+    </button>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="padre_division">
+    <!-- Grupos -->
+    <aside class="grupos">
+      <div class="gr_titulo">
+        <h2>GRUPOS</h2>
+      </div>
+
+      <div class="gr_grupos" id="contenedor_grupos"></div>
+
+      <div class="completas" id="contenedor_completadas">
+        <p>completadas</p>
+      </div>
+    </aside>
+
+    <!-- Tareas -->
+    <section class="tareas">
+      <div class="ta_titulo">
+        <h2>TAREAS</h2>
+      </div>
+
+      <div class="ta_tareas" id="contenedor_tareas"></div>
+    </section>
+  </main>
+    <button id="btn_mas" class="btn_mas" type="button" aria-label="Agregar" aria-expanded="false" aria-controls="menu_mas">
+      +
+    </button>
+
+    <!-- Menú flotante del + -->
+    <div id="menu_mas" class="menu_mas" role="menu" aria-hidden="true">
+      <button class="menu_item" type="button" role="menuitem" data-action="crear_tarea">
+        Crear tarea
+      </button>
+      <button class="menu_item" type="button" role="menuitem" data-action="crear_grupo">
+        Crear grupo
+      </button>
+      <button class="menu_item" type="button" role="menuitem" data-action="crear_subgrupo">
+        Crear sub_grupo
+      </button>
+    </div>
+
+      <!-- Backdrop + Modal Crear Tarea -->
+  <div id="modal_backdrop" class="modal_backdrop" aria-hidden="true">
+    <div
+      id="modal_crear_tarea"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal_titulo"
+    >
+      <div class="modal_header">
+        <h3 id="modal_titulo" class="modal_title">Crear tarea</h3>
+        <button id="btn_cerrar_modal" class="modal_close" type="button" aria-label="Cerrar">✕</button>
+      </div>
+
+      <form id="form_crear_tarea" class="modal_body">
+        <div class="form_grid">
+          <div class="field">
+            <label for="inp_titulo">Título</label>
+            <input id="inp_titulo" type="text" placeholder="Ej. Estudiar para examen" required maxlength="80" />
+          </div>
+
+          <div class="field">
+            <label for="inp_dias">Días para entregarla</label>
+            <input id="inp_dias" type="number" min="0" step="1" placeholder="Ej. 3" required />
+          </div>
+
+          <div class="field">
+            <label for="inp_estimado">Tiempo estimado</label>
+            <input id="inp_estimado" type="text" placeholder="Ej. 2h / 45m" required maxlength="12" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="inp_detalles">Detalles</label>
+          <textarea id="inp_detalles" rows="5" placeholder="Describe lo que necesitas hacer..."></textarea>
+        </div>
+
+        <div class="modal_footer">
+          <button id="btn_cancelar_modal" class="btn_sec" type="button">Cancelar</button>
+          <button id="btn_submit_tarea" class="btn_pri" type="submit">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+    <!-- Backdrop + Modal Detalles de Tarea -->
+  <div id="modal_detalle_backdrop" class="modal_backdrop" aria-hidden="true">
+    <div
+      id="modal_detalle"
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal_detalle_titulo"
+    >
+      <div class="modal_header">
+        <h3 id="modal_detalle_titulo" class="modal_title">Detalles de tarea</h3>
+        <button id="btn_cerrar_detalle" class="modal_close" type="button" aria-label="Cerrar">✕</button>
+      </div>
+
+      <div class="modal_body">
+        <div class="detalle_grid">
+          <div class="detalle_item">
+            <span class="detalle_label">Entrega</span>
+            <span id="detalle_entrega" class="detalle_value">—</span>
+          </div>
+
+          <div class="detalle_item">
+            <span class="detalle_label">Estimado</span>
+            <span id="detalle_estimado" class="detalle_value">—</span>
+          </div>
+
+          <div class="detalle_item">
+            <span class="detalle_label">Estado</span>
+            <span id="detalle_estado" class="detalle_value">—</span>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:12px;">
+          <label>Detalles</label>
+          <div id="detalle_texto" class="detalle_box">—</div>
+        </div>
+
+        <div class="modal_footer">
+          <button id="btn_cerrar_detalle2" class="btn_sec" type="button">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="menuTarea" class="menu-tarea oculto">
+  <div data-action="asignar-grupo">Mover a grupo</div>
+  <div data-action="asignar-subgrupo">Mover a sub-grupo</div>
+  <div class="divider"></div>
+  <div data-action="eliminar-tarea" class="danger">Eliminar tarea</div>
+  </div>
+
+
+</body>
+</html>
